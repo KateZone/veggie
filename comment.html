@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .comment-box {
+            margin-bottom: 20px;
+        }
+        .comment {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>What Vegan Dish do you like?</h2>
+    <div id="comments-section"></div>
+    
+    <div class="comment-box">
+        <h3>Submit your dish and link:</h3>
+        <form id="comment-form">
+            <input type="text" id="username" placeholder="Dish Name" required>
+            <textarea id="comment" placeholder="Link" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const commentForm = document.getElementById('comment-form');
+        const commentsSection = document.getElementById('comments-section');
+
+        commentForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const comment = document.getElementById('comment').value;
+            const timestamp = new Date().toLocaleString(); // Get the current timestamp
+
+            // Create a new comment element
+            const newComment = document.createElement('div');
+            newComment.classList.add('comment'); // Add a class for styling
+            newComment.innerHTML = `<strong>${username}</strong>: <p>${comment}</p><small>${timestamp}</small>`;
+            commentsSection.appendChild(newComment);
+
+            // Reset the form
+            commentForm.reset();
+        });
+    </script>
+</body>
+</html>
